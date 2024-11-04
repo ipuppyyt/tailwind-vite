@@ -38,7 +38,7 @@ async function main() {
             message: '🎨 Choose a stylesheet format:',
             choices: [
                 { title: '\x1b[32mCSS\x1b[0m 🖌️', value: 'css' },
-                // { title: '\x1b[35mSCSS\x1b[0m 🎨', value: 'scss' }
+                { title: '\x1b[35mSCSS\x1b[0m 🎨', value: 'scss' }
             ]
         }
     ]);
