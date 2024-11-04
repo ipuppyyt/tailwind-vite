@@ -60,7 +60,8 @@ async function main() {
                     { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
                     { title: '\x1b[33mJavaScript + SWC\x1b[0m ⚡', value: 'js_swc' },
                     { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[35mTypeScript + SWC\x1b[0m 🔥', value: 'ts_swc' }
+                    { title: '\x1b[35mTypeScript + SWC\x1b[0m 🔥', value: 'ts_swc' },
+                    { title: '\x1b[34mRemix\x1b[0m 🚄', value: 'remix' }
                 ],
                 initial: 0
             });
