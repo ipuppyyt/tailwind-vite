@@ -39,8 +39,16 @@ async function bumpVersion(currentVersion) {
             { title: 'Patch (x.y.z => x.y.Z+1)', value: 'patch' },
             { title: 'Minor (x.y.z => x.Y+1.0)', value: 'minor' },
             { title: 'Major (x.y.z => x.X+1.0.0)', value: 'major' }
-        ]
+        ],
+        validate: value => value.trim() === '' ? 'Please select a version bump type' : true,
+        limit: 1
     });
+
+    if (!response.bump) {
+        console.error(`${red}Error: Invalid version bump type${reset}`);
+        console.log(`${yellow}Exiting...${reset}`);
+        process.exit(0);
+    }
 
     const newVersion = semver.inc(currentVersion, response.bump);
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
@@ -64,6 +72,12 @@ async function deployToGitHub() {
             message: 'Enter the commit message:',
             validate: value => value.trim() === '' ? 'Commit message cannot be empty' : true
         });
+
+        if (!response.commit) {
+            console.error(`${red}Invalid commit message${reset}`);
+            console.log(`${yellow}Exiting...${reset}`);
+            process.exit(0);
+        }
 
         exec(`git commit -m "${response.commit}"`, (error) => {
             if (error) {
@@ -92,10 +106,10 @@ async function main() {
     console.log(`${blue}NPM version: ${npmVersion}${reset}`);
 
     if (semver.gt(localVersion, npmVersion)) {
-        console.log(`${yellow}Passed. Pushing to GitHub...${reset}`);
+        console.log(`${yellow}✔  Passed. Ready to deploy.${reset}`);
         await deployToGitHub();
     } else {
-        console.error(`${red}Error: Local version (${localVersion}) is older than (${npmVersion}).${reset}`);
+        console.error(`${red}Local version (${localVersion}) is outdated.${reset}`);
         const newVersion = await bumpVersion(localVersion);
         console.log(`${green}Updated local version to ${newVersion}${reset}`);
         await deployToGitHub();
