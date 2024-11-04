@@ -29,7 +29,16 @@ async function main() {
                 name: 'library',
                 message: '📚 Select a library or framework:',
                 choices: [
+                    { title: '\x1b[33mVanilla\x1b[0m 🍦', value: 'vanilla' },
+                    // { title: '\x1b[31mVue\x1b[0m 🍇', value: 'vue' },
                     { title: '\x1b[34mReact\x1b[0m 💙', value: 'react' },
+                    // { title: '\x1b[35mPreact\x1b[0m 🍑', value: 'preact' },
+                    // { title: '\x1b[36mLit\x1b[0m 📜', value: 'lit' },
+                    // { title: '\x1b[32mSvelte\x1b[0m 🦌', value: 'svelte' },
+                    // { title: '\x1b[33mSolid\x1b[0m 🧱', value: 'solid' },
+                    // { title: '\x1b[31mQwik\x1b[0m 🚀', value: 'qwik' },
+                    // { title: '\x1b[35mAngular\x1b[0m 🅰️', value: 'angular' },
+                    // { title: '\x1b[36mOthers\x1b[0m 🛠️', value: 'others' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === "" ? 'Library is required.' : true
@@ -51,7 +60,31 @@ async function main() {
         }
 
         let variantResponse;
-        if (library === 'react') {
+        if (library === 'vanilla') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'vue') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    { title: '\x1b[33mCustomise with create-vue\x1b[0m 🎨', value: 'create-vue' },
+                    { title: '\x1b[33mNuxt.js\x1b[0m 📦', value: 'nuxt' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'react') {
             variantResponse = await prompts({
                 type: 'select',
                 name: 'variant',
@@ -65,6 +98,90 @@ async function main() {
                 ],
                 initial: 0
             });
+        } else if (library === 'preact') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    { title: '\x1b[33mCustomise with create-preact\x1b[0m 🎨', value: 'create-preact' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'lit') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'svelte') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    { title: '\x1b[33mSvelteKit\x1b[0m 🚀', value: 'sveltekit' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'solid') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'qwik') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    { title: '\x1b[33mQwikCity\x1b[0m 🏙️', value: 'qwikcity' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'angular') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[31mAngular\x1b[0m 🅰️', value: 'angular' },
+                    { title: '\x1b[36mAnalog\x1b[0m 📟', value: 'analog' }
+                ],
+                initial: 0
+            });
+        } else if (library === 'others') {
+            variantResponse = await prompts({
+                type: 'select',
+                name: 'variant',
+                message: '📂 Select a framework and variant:',
+                choices: [
+                    { title: '\x1b[33mcreate-vite-extra\x1b[0m 🎨', value: 'create-vite-extra' },
+                    { title: '\x1b[34mcreate-electron-vite\x1b[0m 🎨', value: 'create-electron-vite' }
+                ],
+                initial: 0
+            });
+        } else {
+            console.error(`\x1b[31m❌ Invalid library.\x1b[0m`);
+            console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`)
+            process.exit(0);
         }
 
         const { variant } = variantResponse;
