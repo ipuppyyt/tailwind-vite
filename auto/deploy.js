@@ -4,6 +4,12 @@ const semver = require('semver');
 const axios = require('axios');
 const fs = require('fs');
 
+const red = '\x1b[31m';
+const green = '\x1b[32m';
+const yellow = '\x1b[33m';
+const blue = '\x1b[34m';
+const reset = '\x1b[0m';
+
 function getPackageName() {
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     return packageJson.name;
@@ -14,7 +20,7 @@ async function getNpmVersion(packageName) {
         const response = await axios.get(`https://registry.npmjs.org/${packageName}`);
         return response.data['dist-tags'].latest;
     } catch (error) {
-        console.error(`Error fetching version from npm: ${error.message}`);
+        console.error(`${red}Error fetching version from npm: ${error.message}${reset}`);
         process.exit(1);
     }
 }
@@ -36,41 +42,42 @@ async function bumpVersion(currentVersion) {
         ]
     });
 
-    const newVersion = semver[response.bump](currentVersion);
+    const newVersion = semver.inc(currentVersion, response.bump);
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-    packageJson.version = newVersion;
+    packageJson.version = newVersion.toString();
 
     fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2));
-    console.log(`Version bumped to ${newVersion}`);
-    return newVersion;
+    console.log(`${green}Version bumped to ${packageJson.version}${reset}`);
+    return packageJson.version;
 }
 
 async function deployToGitHub() {
-    exec('git add .', (error) => {
+    exec('git add .', async (error) => {
         if (error) {
-            console.error(`Error adding files to git: ${error.message}`);
+            console.error(`${red}Error adding files to git: ${error.message}${reset}`);
             return;
         }
 
-        prompts({
+        const response = await prompts({
             type: 'text',
             name: 'commit',
-            message: 'Enter the commit message:'
-        }).then(response => {
-            exec(`git commit -m "${response.commit}"`, (error) => {
+            message: 'Enter the commit message:',
+            validate: value => value.trim() === '' ? 'Commit message cannot be empty' : true
+        });
+
+        exec(`git commit -m "${response.commit}"`, (error) => {
+            if (error) {
+                console.error(`${red}Error committing files: ${error.message}${reset}`);
+                return;
+            }
+
+            exec('git push origin main', (error) => {
                 if (error) {
-                    console.error(`Error committing files: ${error.message}`);
+                    console.error(`${red}Error pushing to GitHub: ${error.message}${reset}`);
                     return;
                 }
 
-                exec('git push origin main', (error) => {
-                    if (error) {
-                        console.error(`Error pushing to GitHub: ${error.message}`);
-                        return;
-                    }
-
-                    console.log('Successfully deployed to GitHub!');
-                });
+                console.log(`${green}Successfully deployed to GitHub!${reset}`);
             });
         });
     });
@@ -81,17 +88,17 @@ async function main() {
     const localVersion = getLocalVersion();
     const npmVersion = await getNpmVersion(packageName);
 
-    console.log(`Local version: ${localVersion}`);
-    console.log(`NPM version: ${npmVersion}`);
+    console.log(`${blue}Local version: ${localVersion}${reset}`);
+    console.log(`${blue}NPM version: ${npmVersion}${reset}`);
 
     if (semver.gt(localVersion, npmVersion)) {
-        console.log('Passes. Pushing to GitHub...');
-        deployToGitHub();
+        console.log(`${yellow}Passed. Pushing to GitHub...${reset}`);
+        await deployToGitHub();
     } else {
-        console.error(`Error: Local version (${localVersion}) is older than (${npmVersion}).`);
+        console.error(`${red}Error: Local version (${localVersion}) is older than (${npmVersion}).${reset}`);
         const newVersion = await bumpVersion(localVersion);
-        console.log(`Updated local version to ${newVersion}`);
-        deployToGitHub();
+        console.log(`${green}Updated local version to ${newVersion}${reset}`);
+        await deployToGitHub();
     }
 }
 
