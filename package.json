@@ -32,6 +32,9 @@
         "type": "git",
         "url": "git+https://github.com/ipuppyyt/vite-tailwind.git"
     },
+    "bugs": {
+        "url": "https://github.com/ipuppyyt/vite-tailwind/issues"
+    },
     "preferGlobal": true,
     "dependencies": {
         "prompts": "^2.4.2"
