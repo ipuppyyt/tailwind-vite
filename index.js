@@ -21,7 +21,8 @@ async function main() {
                 type: 'text',
                 name: 'projectName',
                 message: '📝 Project name:',
-                initial: 'vite-tailwind-app'
+                initial: 'vite-tailwind-app',
+                validate: (value) => value.trim() === "" ? 'Project name is required.' : true
             },
             {
                 type: 'select',
@@ -30,11 +31,24 @@ async function main() {
                 choices: [
                     { title: '\x1b[34mReact\x1b[0m 💙', value: 'react' },
                 ],
-                initial: 0
+                initial: 0,
+                validate: (value) => value.trim() === "" ? 'Library is required.' : true
             }
         ]);
 
         const { projectName, library } = response;
+
+        if (!projectName) {
+            console.error(`\x1b[31m❌ Project name is required.\x1b[0m`);
+            console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
+            process.exit(0);
+        }
+
+        if (!library) {
+            console.error(`\x1b[31m❌ Library is required.\x1b[0m`);
+            console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
+            process.exit(0);
+        }
 
         let variantResponse;
         if (library === 'react') {
@@ -53,6 +67,12 @@ async function main() {
 
         const { variant } = variantResponse;
 
+        if (!variant) {
+            console.error(`\x1b[31m❌ Variation is required.\x1b[0m`);
+            console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
+            process.exit(0);
+        }
+
         const styleResponse = await prompts({
             type: 'select',
             name: 'style',
@@ -65,6 +85,12 @@ async function main() {
         });
 
         const { style } = styleResponse;
+
+        if (!style) {
+            console.error(`\x1b[31m❌ Stylesheet format is required.\x1b[0m`);
+            console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`)
+            process.exit(0);
+        }
 
         const templatePath = path.join(__dirname, 'templates', library, variant, style);
         const projectPath = projectName === "." ? process.cwd() : path.resolve(process.cwd(), projectName);
@@ -83,7 +109,8 @@ async function main() {
                         { title: '\x1b[33m🚧 Ignore and continue\x1b[0m', value: 'ignore' },
                         { title: '\x1b[31m🚪 Exit\x1b[0m', value: 'exit' }
                     ],
-                    initial: 0
+                    initial: 0,
+                    validate: (value) => value.trim() === '' ? 'Please select an option' : true
                 });
 
                 if (dirprompt.value === 'exit') {
@@ -93,8 +120,12 @@ async function main() {
                         fs.rmSync(path.join(projectPath, file), { recursive: true });
                     });
                     console.log(`\x1b[33m🗑️ Directory cleared.\x1b[0m`);
-                } else {
+                } else if (dirprompt.value === 'ignore') {
                     console.log('\x1b[33m🚧 Ignoring existing files and continuing...\x1b[0m');
+                } else {
+                    console.error(`\x1b[31m❌ Invalid option.\x1b[0m`);
+                    console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
+                    process.exit(0);
                 }
             }
         }
