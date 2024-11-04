@@ -85,6 +85,8 @@ async function deployToGitHub() {
                 return;
             }
 
+            console.log(`${blue}Pushing to GitHub...${reset}`);
+
             exec('git push origin main', (error) => {
                 if (error) {
                     console.error(`${red}Error pushing to GitHub: ${error.message}${reset}`);
