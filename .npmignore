@@ -8,3 +8,6 @@ tests/
 # Ignore other project-specific files
 .vscode/
 node_modules/
+
+# Ignore files used for git configuration
+.gitattributes
