@@ -1,10 +1,10 @@
 {
-    "name": "create-vite-tailwindcss",
-    "version": "1.0.0",
+    "name": "vite-tailwindcss",
+    "version": "1.0.1",
     "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
     "main": "index.js",
     "bin": {
-        "create-vite-tailwind": "index.js"
+        "vite-tailwindcss": "index.js"
     },
     "publishConfig": {
         "access": "public"
@@ -16,7 +16,7 @@
         "vite",
         "tailwindcss",
         "template",
-        "create-vite-tailwind",
+        "vite-tailwindcss",
         "cli",
         "javascript",
         "typescript",
@@ -26,6 +26,7 @@
     ],
     "author": "ipuppyyt",
     "license": "MIT",
+    "preferGlobal": true,
     "dependencies": {
         "prompts": "^2.4.2"
     }
