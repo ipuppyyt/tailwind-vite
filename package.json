@@ -1,42 +1,46 @@
 {
-    "name": "vite-tailwindcss",
-    "version": "1.1.4",
-    "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
-    "main": "index.js",
-    "bin": {
-        "vite-tailwindcss": "index.js"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "scripts": {
-        "test": "node index.js",
-        "deploy": "npm publish --access public"
-    },
-    "keywords": [
-        "vite",
-        "tailwindcss",
-        "template",
-        "vite-tailwindcss",
-        "cli",
-        "javascript",
-        "typescript",
-        "swc",
-        "css",
-        "scss"
-    ],
-    "author": "ipuppyyt",
-    "license": "MIT",
-    "homepage": "https://github.com/ipuppyyt/vite-tailwind",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ipuppyyt/vite-tailwind.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ipuppyyt/vite-tailwind/issues"
-    },
-    "preferGlobal": true,
-    "dependencies": {
-        "prompts": "^2.4.2"
-    }
+  "name": "vite-tailwindcss",
+  "version": 4,
+  "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
+  "main": "index.js",
+  "bin": {
+    "vite-tailwindcss": "index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "node index.js",
+    "deploy": "node auto/deploy.js"
+  },
+  "keywords": [
+    "vite",
+    "tailwindcss",
+    "template",
+    "vite-tailwindcss",
+    "cli",
+    "javascript",
+    "typescript",
+    "swc",
+    "css",
+    "scss"
+  ],
+  "author": "ipuppyyt",
+  "license": "MIT",
+  "homepage": "https://github.com/ipuppyyt/vite-tailwind",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ipuppyyt/vite-tailwind.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ipuppyyt/vite-tailwind/issues"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "axios": "^1.7.7",
+    "semver": "^7.6.3"
+  }
 }
