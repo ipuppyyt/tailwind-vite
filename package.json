@@ -1,6 +1,6 @@
 {
     "name": "vite-tailwindcss",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
     "main": "index.js",
     "bin": {
@@ -10,7 +10,8 @@
         "access": "public"
     },
     "scripts": {
-        "test": "node index.js"
+        "test": "node index.js",
+        "deploy": "npm publish --access public"
     },
     "keywords": [
         "vite",

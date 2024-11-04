@@ -57,23 +57,6 @@ You'll be prompted to enter details such as:
     npm run dev
     ```
 
-## Project Structure
-Your new project will be structured as follows:
-
-```arduino
-your-project-name/
-├── public/
-├── src/
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
-└── ... (other files)
-```
-
 ## License
 This project is licensed under the MIT License.
 

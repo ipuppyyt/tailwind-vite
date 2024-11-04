@@ -1,0 +1,10 @@
+# Ignore test files
+tests/
+
+# Ignore configuration files or documentation not needed in the package
+*.log
+.DS_Store
+
+# Ignore other project-specific files
+.vscode/
+node_modules/
