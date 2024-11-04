@@ -79,7 +79,7 @@ async function main() {
                 name: 'value',
                 message: `⚠️ Directory is not empty. Choose an option:`,
                 choices: [
-                    { title: '\x1b[31m🗑️ Clear directory\x1b[0m', value: 'clear' },
+                    { title: '\x1b[31m🗑️  Clear directory\x1b[0m', value: 'clear' },
                     { title: '\x1b[33m🚧 Ignore and continue\x1b[0m', value: 'ignore' },
                     { title: '\x1b[31m🚪 Exit\x1b[0m', value: 'exit' }
                 ],
@@ -92,7 +92,7 @@ async function main() {
                 files.forEach((file) => {
                     fs.rmSync(path.join(projectPath, file), { recursive: true });
                 });
-                console.log(`\x1b[33m🗑️ Directory cleared.\x1b[0m`);
+                console.log(`\x1b[33m🗑️  Directory cleared.\x1b[0m`);
             } else {
                 console.log('\x1b[33m🚧 Ignoring existing files and continuing...\x1b[0m');
             }
@@ -107,7 +107,7 @@ async function main() {
     fs.cpSync(templatePath, projectPath, { recursive: true });
 
     console.log(`\n\x1b[32m🚀 Setting up your project...\x1b[0m`);
-    console.log(`\n\x1b[32m✔️ ${projectName} is ready! To get started:\x1b[0m`);
+    console.log(`\n\x1b[32m✔️  ${projectName} is ready! To get started:\x1b[0m`);
     if (projectName !== ".") {
         console.log(`\n  cd ${projectName}`);
     }
