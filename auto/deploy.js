@@ -32,7 +32,7 @@ async function bumpVersion(currentVersion) {
         choices: [
             { title: 'Patch (x.y.z => x.y.Z+1)', value: 'patch' },
             { title: 'Minor (x.y.z => x.Y+1.0)', value: 'minor' },
-            { title: 'Major (x.y.z => X+1.0.0)', value: 'major' }
+            { title: 'Major (x.y.z => x.X+1.0.0)', value: 'major' }
         ]
     });
 
@@ -45,32 +45,32 @@ async function bumpVersion(currentVersion) {
     return newVersion;
 }
 
-function deployToGitHub() {
+async function deployToGitHub() {
     exec('git add .', (error) => {
         if (error) {
             console.error(`Error adding files to git: ${error.message}`);
             return;
         }
 
-        const response = prompts({
+        prompts({
             type: 'text',
             name: 'commit',
             message: 'Enter the commit message:'
-        });
-
-        exec(`git commit -m "${response.commit}"`, (error) => {
-            if (error) {
-                console.error(`Error committing files: ${error.message}`);
-                return;
-            }
-
-            exec('git push origin main', (error) => {
+        }).then(response => {
+            exec(`git commit -m "${response.commit}"`, (error) => {
                 if (error) {
-                    console.error(`Error pushing to GitHub: ${error.message}`);
+                    console.error(`Error committing files: ${error.message}`);
                     return;
                 }
 
-                console.log('Successfully deployed to GitHub!');
+                exec('git push origin main', (error) => {
+                    if (error) {
+                        console.error(`Error pushing to GitHub: ${error.message}`);
+                        return;
+                    }
+
+                    console.log('Successfully deployed to GitHub!');
+                });
             });
         });
     });
