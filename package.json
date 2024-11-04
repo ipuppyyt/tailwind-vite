@@ -1,6 +1,6 @@
 {
     "name": "vite-tailwindcss",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
     "main": "index.js",
     "bin": {
@@ -27,6 +27,11 @@
     ],
     "author": "ipuppyyt",
     "license": "MIT",
+    "homepage": "https://github.com/ipuppyyt/vite-tailwind",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ipuppyyt/vite-tailwind.git"
+    },
     "preferGlobal": true,
     "dependencies": {
         "prompts": "^2.4.2"
