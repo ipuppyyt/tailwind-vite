@@ -12,7 +12,9 @@
 ![License](https://img.shields.io/npm/l/vite-tailwindcss?color=blue)
 ![NPM Downloads](https://img.shields.io/npm/dm/vite-tailwindcss.svg?style=flat&color=blue)
 
-Create Vite Tailwind CSS is a command-line interface (CLI) tool that simplifies the process of bootstrapping a new project using [Vite](https://vitejs.dev/) and [Tailwind CSS](https://tailwindcss.com/). This tool supports JavaScript, TypeScript, and various stylesheets (CSS and SCSS) for modern web development.
+
+An enhanced Vite CLI for quickly setting up frontend projects with popular frameworks like React, Vue, and Svelte. This tool lets you configure JavaScript or TypeScript, CSS, SCSS, and Tailwind options, with everything preconfigured for immediate use. Seamlessly integrate with Git by initializing a repository and connecting to GitHub directly during setup. Ideal for developers seeking a fast, interactive way to scaffold fully optimized projects with Vite’s powerful build system.
+
 
 ## Features
 
