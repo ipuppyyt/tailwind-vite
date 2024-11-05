@@ -1,6 +1,9 @@
 # Create Vite Tailwind CSS
 
+![JavaScript](https://img.shields.io/badge/JavaScript-007ACC?style=flat&logo=javascript&logoColor=white&color=yellow)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white&color=blue)
+![React](https://img.shields.io/badge/React-%2320232a.svg?style=flat&logo=React&logoColor=%2361DAFB)
+![Remix](https://img.shields.io/badge/Remix-%23000.svg?style=flat&logo=remix&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=flat&logo=SASS&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&&logo=tailwind-css&logoColor=white)
@@ -18,6 +21,24 @@ Create Vite Tailwind CSS is a command-line interface (CLI) tool that simplifies 
 - Choose between JavaScript, TypeScript, and SWC variants for optimized builds.
 - Flexible stylesheet options: CSS or SCSS.
 - Prompts for user-friendly interaction during project setup.
+
+## Recipe
+
+```arduino
+VITE-TAILWINDCSS/
+├── REACT/
+│   ├── JS
+│   ├── JS + SWC
+│   ├── TS
+│   ├── TS + SWC
+│   └── Remix
+├── VANILLA
+│   ├── JS
+│   └── TS
+└── ... (coming soon)
+```
+
+As of now only React and Vanilla are supported and more recipes will appear overtime.
 
 ## Getting Started
 
