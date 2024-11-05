@@ -71,7 +71,7 @@ You'll be prompted to enter details such as:
 
 - Run the command to create your project:
   ```bash
-    npx vite-tailwind
+  npx vite-tailwind
   ```
   or
   ```bash
