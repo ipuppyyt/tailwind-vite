@@ -23,7 +23,8 @@ async function main() {
                 name: 'projectName',
                 message: '📝 Project name:',
                 initial: 'vite-tailwind-app',
-                validate: (value) => value.trim() === "" ? 'Project name is required.' : true
+                validate: (value) => value.trim() === "" ? 'Project name is required.' : true,
+                format: (value) => value.trim()
             },
             {
                 type: 'select',
@@ -50,8 +51,7 @@ async function main() {
 
         if (!projectName) {
             console.error(`\x1b[31m❌ Project name is required.\x1b[0m`);
-            console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
-            process.exit(0);
+            handleExit(null);
         }
 
         if (!library) {
@@ -270,4 +270,4 @@ async function main() {
 
 main();
 
-module.exports = main;
+module.exports = { main };
