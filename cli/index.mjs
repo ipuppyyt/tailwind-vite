@@ -5,6 +5,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join, resolve } from 'path';
 import ora from 'ora';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -61,7 +62,7 @@ async function main() {
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
                 onState: (state) => {
                     state.aborted && handleExit(null);
-                },                
+                },
             });
         } else if (library === 'vue') {
             variantResponse = await prompts({
@@ -278,10 +279,68 @@ async function main() {
         }
 
         const spinner = ora('Setting up your project...').start();
-
         fs.cpSync(templatePath, projectPath, { recursive: true });
+        spinner.succeed('Project setup complete!');
 
-        spinner.succeed('Project setup completed!');
+        let gitInstalled = false;
+        try {
+            execSync('git --version', { stdio: 'ignore' });
+            gitInstalled = true;
+        } catch {
+            console.log('\x1b[33m⚠️ Git is not installed. Skipping Git initialization.\x1b[0m');
+        }
+
+        if (gitInstalled) {
+            const gitResponse = await prompts({
+                type: 'confirm',
+                name: 'initializeGit',
+                message: 'Would you like to initialize a Git repository?',
+                initial: true,
+                onState: (state) => {
+                    state.aborted && handleExit(null);
+                },
+            });
+
+            if (gitResponse.initializeGit) {
+                let githubUsername;
+
+                try {
+                    githubUsername = execSync('git config --get user.name', { encoding: 'utf-8' }).trim();
+                    if (!githubUsername) throw new Error('Username not set in Git config');
+                } catch {
+                    const githubUsernameResponse = await prompts({
+                        type: 'text',
+                        name: 'username',
+                        message: 'Enter your GitHub username:',
+                        validate: (value) => value.trim() === "" ? 'GitHub username is required.' : true,
+                        onState: (state) => {
+                            state.aborted && handleExit(null);
+                        },
+                    });
+                    githubUsername = githubUsernameResponse.username;
+                }
+
+                const gitRepoNameResponse = await prompts({
+                    type: 'text',
+                    name: 'repoName',
+                    message: 'Enter a name for the Git repository:',
+                    initial: projectName,
+                    validate: (value) => value.trim() === "" ? 'Repository name is required.' : true,
+                    onState: (state) => {
+                        state.aborted && handleExit(null);
+                    },
+                });
+
+                try {
+                    execSync('git init', { cwd: projectPath, stdio: 'ignore' });
+                    execSync(`git remote add origin https://github.com/${githubUsername.toLowerCase()}/${gitRepoNameResponse.repoName}.git`, { cwd: projectPath });
+                    console.log(`\x1b[32m✔️  Git repository initialized.\x1b[0m`);
+                    console.log(`\x1b[32mOrigin: https://github.com/${githubUsername}/${gitRepoNameResponse.repoName}.git\x1b[0m`);
+                } catch (error) {
+                    console.error(`\x1b[31m❌ Failed to initialize Git repository: ${error.message}\x1b[0m`);
+                }
+            }
+        }
 
         console.log(`\n\x1b[32m✔️  ${projectName} is ready! To get started:\x1b[0m`);
         if (projectName !== ".") {
