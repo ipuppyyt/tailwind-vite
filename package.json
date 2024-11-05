@@ -1,10 +1,10 @@
 {
   "name": "vite-tailwindcss",
-  "version": "2.8.3",
+  "version": "2.8.4",
   "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
-  "main": "cli/index.js",
+  "main": "cli/index.mjs",
   "bin": {
-    "vite-tailwindcss": "cli/index.js"
+    "vite-tailwindcss": "cli/index.mjs"
   },
   "publishConfig": {
     "access": "public"
@@ -36,6 +36,7 @@
   },
   "preferGlobal": true,
   "dependencies": {
+    "ora": "^8.1.1",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
