@@ -1,4 +1,4 @@
-# Vite Tailwind
+# Tailwind Vite
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-007ACC?style=flat&logo=javascript&logoColor=white&color=yellow)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white&color=blue)
@@ -25,7 +25,7 @@ An enhanced Vite CLI for quickly setting up frontend projects with popular frame
 ## Recipe
 
 ```arduino
-VITE-TAILWIND/
+TAILWIND-VITE/
 ├── REACT/
 │   ├── JS
 │   ├── JS + SWC
@@ -51,13 +51,13 @@ Make sure you have [Node.js](https://nodejs.org/) installed on your machine (ver
 You can use it directly with `npx`:
 
 ```bash
-npx vite-tailwind
+npx tailwind-vite
 ```
 
 or
 
 ```bash
-npm create vite-tailwind
+npm create tailwind-vite
 ```
 
 You'll be prompted to enter details such as:
@@ -71,11 +71,11 @@ You'll be prompted to enter details such as:
 
 - Run the command to create your project:
   ```bash
-  npx vite-tailwind
+  npx tailwind-vite
   ```
   or
   ```bash
-  npm create vite-tailwind
+  npm create tailwind-vite
   ```
 - Follow the prompts to set up your project.
 
