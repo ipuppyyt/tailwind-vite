@@ -73,10 +73,14 @@ async function bumpVersion(currentVersion) {
         validate: value => value.trim() === '' ? 'Please select a version bump type' : true,
         limit: 1,
         onState: state => {
-            state.aborted && console.log(`${yellow}Exiting...${reset}`);
+            state.aborted && console.log(`${yellow}Exiting...${reset}`) && process.exit(0);
         }
     });
 
+    if (!response.bump) {
+        console.log(`${yellow}Exiting...${reset}`);
+        process.exit(0);
+    }
     const newVersion = incrementVersion(currentVersion, response.bump);
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     packageJson.version = newVersion.toString();
@@ -99,9 +103,14 @@ async function deployToGitHub() {
             message: 'Enter the commit message:',
             validate: value => value.trim() === '' ? 'Commit message cannot be empty' : true,
             onState: state => {
-                state.aborted && console.log(`${yellow}Exiting...${reset}`);
+                state.aborted && console.log(`${yellow}Exiting...${reset}`) && process.exit(0);
             }
         });
+
+        if (!response.commit) {
+            console.log(`${yellow}Exiting...${reset}`);
+            process.exit(0);
+        }
 
         exec(`git commit -m "${response.commit}"`, (error) => {
             if (error) {

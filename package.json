@@ -1,6 +1,6 @@
 {
   "name": "vite-tailwindcss",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
   "main": "cli/index.mjs",
   "bin": {
@@ -45,8 +45,5 @@
   "dependencies": {
     "ora": "^8.1.1",
     "prompts": "^2.4.2"
-  },
-  "devDependencies": {
-    "semver": "^7.6.3"
   }
 }
