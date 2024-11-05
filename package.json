@@ -1,22 +1,19 @@
 {
-  "name": "vite-tailwindcss",
-  "version": "3.1.4",
+  "name": "create-tailwind-vite",
+  "version": "1.1.0",
   "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
   "main": "cli/index.mjs",
   "bin": {
-    "vite-tailwindcss": "cli/index.mjs"
+    "tailwind-vite": "cli/index.mjs"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "deploy": "node auto/deploy.js"
   },
   "keywords": [
     "vite",
     "tailwindcss",
     "template",
-    "vite-tailwindcss",
+    "tailwind-vite",
     "cli",
     "javascript",
     "typescript",
@@ -26,13 +23,13 @@
   ],
   "author": "ipuppyyt",
   "license": "MIT",
-  "homepage": "https://github.com/ipuppyyt/vite-tailwindcss#readme",
+  "homepage": "https://github.com/ipuppyyt/tailwind-vite#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipuppyyt/vite-tailwindcss.git"
+    "url": "git+https://github.com/ipuppyyt/tailwind-vite.git"
   },
   "bugs": {
-    "url": "https://github.com/ipuppyyt/vite-tailwindcss/issues"
+    "url": "https://github.com/ipuppyyt/tailwind-vite/issues"
   },
   "files": [
     "cli/index.mjs",
@@ -45,5 +42,8 @@
   "dependencies": {
     "ora": "^8.1.1",
     "prompts": "^2.4.2"
+  },
+  "scripts": {
+    "deploy": "node auto/deploy.js"
   }
 }

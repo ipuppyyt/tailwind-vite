@@ -8,13 +8,11 @@
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=flat&logo=SASS&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&&logo=tailwind-css&logoColor=white)
 ![Node.js Version](https://img.shields.io/badge/Node.js-v18.0.0-339933?style=flat&logo=node.js&logoColor=white&color=blue)
-![NPM Version](https://img.shields.io/npm/v/vite-tailwindcss?style=flat&logo=npm&logoColor=white&color=blue)
-![License](https://img.shields.io/npm/l/vite-tailwindcss?color=blue)
-![NPM Downloads](https://img.shields.io/npm/dm/vite-tailwindcss.svg?style=flat&color=blue)
-
+![NPM Version](https://img.shields.io/npm/v/create-tailwind-vite?style=flat&logo=npm&logoColor=white&color=blue)
+![License](https://img.shields.io/npm/l/create-tailwind-vite?color=blue)
+![NPM Downloads](https://img.shields.io/npm/dm/create-tailwind-vite.svg?style=flat&color=blue)
 
 An enhanced Vite CLI for quickly setting up frontend projects with popular frameworks like React, Vue, and Svelte. This tool lets you configure JavaScript or TypeScript, CSS, SCSS, and Tailwind options, with everything preconfigured for immediate use. Seamlessly integrate with Git by initializing a repository and connecting to GitHub directly during setup. Ideal for developers seeking a fast, interactive way to scaffold fully optimized projects with Vite’s powerful build system.
-
 
 ## Features
 
@@ -46,7 +44,7 @@ As of now only React and Vanilla are supported and more recipes will appear over
 
 ### Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/) installed on your machine (version 14 or higher).
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine (version 18 or higher).
 
 ### Usage
 
@@ -54,6 +52,12 @@ You can use it directly with `npx`:
 
 ```bash
 npx vite-tailwindcss
+```
+
+or
+
+```bash
+npm create vite-tailwindcss
 ```
 
 You'll be prompted to enter details such as:
@@ -66,9 +70,13 @@ You'll be prompted to enter details such as:
 ### Example Workflow
 
 - Run the command to create your project:
-    ```bash
+  ```bash
     npx vite-tailwindcss
-    ```
+  ```
+  or
+  ```bash
+  npm create vite-tailwindcss
+  ```
 - Follow the prompts to set up your project.
 
 - Navigate into your project directory:

@@ -36,7 +36,15 @@ async function main() {
                 message: '📚 Select a library or framework:',
                 choices: [
                     { title: '\x1b[33mVanilla\x1b[0m 🍦', value: 'vanilla' },
+                    // { title: '\x1b[36mVue\x1b[0m 🍃', value: 'vue' },
                     { title: '\x1b[34mReact\x1b[0m 💙', value: 'react' },
+                    // { title: '\x1b[32mPreact\x1b[0m 🌳', value: 'preact' },
+                    // { title: '\x1b[35mLit\x1b[0m 🕯️', value: 'lit' },
+                    // { title: '\x1b[33mSvelte\x1b[0m 🛍️', value: 'svelte' },
+                    // { title: '\x1b[32mSolid\x1b[0m 🪶', value: 'solid' },
+                    // { title: '\x1b[33mQwik\x1b[0m 🚀', value: 'qwik' },
+                    // { title: '\x1b[31mAngular\x1b[0m 🅰️', value: 'angular' },
+                    // { title: '\x1b[33mOthers\x1b[0m 🎨', value: 'others' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === "" ? 'Library is required.' : true,
