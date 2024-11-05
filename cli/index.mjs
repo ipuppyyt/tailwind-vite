@@ -278,9 +278,9 @@ async function main() {
             process.exit(0);
         }
 
-        const spinner = ora('Setting up your project...').start();
+        const spinner1 = ora('Setting up your project...').start();
         fs.cpSync(templatePath, projectPath, { recursive: true });
-        spinner.succeed('Project setup complete!');
+        spinner1.succeed('Project setup complete!');
 
         let gitInstalled = false;
         try {
@@ -331,21 +331,21 @@ async function main() {
                     },
                 });
 
+                const spinner2 = ora('Setting up Git repository...').start();
                 try {
                     execSync('git init', { cwd: projectPath, stdio: 'ignore' });
                     execSync(`git remote add origin https://github.com/${githubUsername.toLowerCase()}/${gitRepoNameResponse.repoName}.git`, { cwd: projectPath });
-                    console.log(`\x1b[32m✔️  Git repository initialized.\x1b[0m`);
+                    spinner2.succeed('Git repository initialized.');
                     console.log(`\x1b[32mOrigin: https://github.com/${githubUsername}/${gitRepoNameResponse.repoName}.git\x1b[0m`);
                 } catch (error) {
-                    console.error(`\x1b[31m❌ Failed to initialize Git repository: ${error.message}\x1b[0m`);
+                    spinner2.fail(`Failed to initialize Git repository: ${error.message}`);
                 }
             }
         }
 
-        console.log(`\n\x1b[32m✔️  ${projectName} is ready! To get started:\x1b[0m`);
-        if (projectName !== ".") {
-            console.log(`\n  cd ${projectName}`);
-        }
+        const spinner3 = ora('').start();
+        spinner3.succeed('All done! To get started:');
+        (projectName !== ".") && console.log(`\n  cd ${projectName}`);
         console.log(`  npm install`);
         console.log(`  npm run dev`);
     } catch (error) {
