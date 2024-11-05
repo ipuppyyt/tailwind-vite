@@ -1,4 +1,4 @@
-# Create Vite Tailwind CSS
+# Vite Tailwind
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-007ACC?style=flat&logo=javascript&logoColor=white&color=yellow)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white&color=blue)
