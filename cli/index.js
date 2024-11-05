@@ -4,12 +4,13 @@ const prompts = require('prompts');
 const fs = require('fs');
 const path = require('path');
 
-const handleExit = (error) => {
+const handleExit = (error, isTest) => {
     if (error) {
         console.error(`\n\x1b[31m❌ ${error.message}\x1b[0m`);
     }
     console.log(`\n\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
-    process.exit(0);
+    if (!isTest) process.exit(0);
+    throw new Error("Exit called");
 };
 
 process.on('SIGINT', handleExit);
@@ -233,7 +234,7 @@ async function main() {
                 });
 
                 if (dirprompt.value === 'exit') {
-                    handleExit();
+                    return handleExit(null, isTest);
                 } else if (dirprompt.value === 'clear') {
                     files.forEach((file) => {
                         fs.rmSync(path.join(projectPath, file), { recursive: true });
@@ -243,8 +244,7 @@ async function main() {
                     console.log('\x1b[33m🚧 Ignoring existing files and continuing...\x1b[0m');
                 } else {
                     console.error(`\x1b[31m❌ Invalid option.\x1b[0m`);
-                    console.log(`\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
-                    process.exit(0);
+                    return handleExit(null, isTest);
                 }
             }
         }
@@ -269,3 +269,5 @@ async function main() {
 }
 
 main();
+
+module.exports = main;
