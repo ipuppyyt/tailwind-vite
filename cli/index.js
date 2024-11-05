@@ -212,7 +212,7 @@ async function main() {
             process.exit(0);
         }
 
-        const templatePath = path.join(__dirname, 'templates', library, variant, style);
+        const templatePath = path.join(__dirname, '../templates', library, variant, style);
         const projectPath = projectName === "." ? process.cwd() : path.resolve(process.cwd(), projectName);
 
         if (!fs.existsSync(projectPath)) {
