@@ -1,7 +1,5 @@
 const { exec } = require('child_process');
 const prompts = require('prompts');
-const semver = require('semver');
-const axios = require('axios');
 const fs = require('fs');
 
 const red = '\x1b[31m';
@@ -17,8 +15,12 @@ function getPackageName() {
 
 async function getNpmVersion(packageName) {
     try {
-        const response = await axios.get(`https://registry.npmjs.org/${packageName}`);
-        return response.data['dist-tags'].latest;
+        const response = await fetch(`https://registry.npmjs.org/${packageName}`, { method: 'GET' });
+        if (response.status !== 200) {
+            throw new Error('Failed to fetch version from npm');
+        }
+        const data = await response.json();
+        return data['dist-tags'].latest;
     } catch (error) {
         console.error(`${red}Error fetching version from npm: ${error.message}${reset}`);
         process.exit(1);
@@ -28,6 +30,34 @@ async function getNpmVersion(packageName) {
 function getLocalVersion() {
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     return packageJson.version;
+}
+
+function isGreaterVersion(localVersion, npmVersion) {
+    const [localMajor, localMinor, localPatch] = localVersion.split('.').map(Number);
+    const [npmMajor, npmMinor, npmPatch] = npmVersion.split('.').map(Number);
+
+    if (localMajor > npmMajor) return true;
+    if (localMajor === npmMajor && localMinor > npmMinor) return true;
+    if (localMajor === npmMajor && localMinor === npmMinor && localPatch > npmPatch) return true;
+
+    return false;
+}
+
+function incrementVersion(currentVersion, bumpType) {
+    let [major, minor, patch] = currentVersion.split('.').map(Number);
+
+    if (bumpType === 'patch') {
+        patch += 1;
+    } else if (bumpType === 'minor') {
+        minor += 1;
+        patch = 0;
+    } else if (bumpType === 'major') {
+        major += 1;
+        minor = 0;
+        patch = 0;
+    }
+
+    return `${major}.${minor}.${patch}`;
 }
 
 async function bumpVersion(currentVersion) {
@@ -41,16 +71,13 @@ async function bumpVersion(currentVersion) {
             { title: 'Major (x.y.z => x.X+1.0.0)', value: 'major' }
         ],
         validate: value => value.trim() === '' ? 'Please select a version bump type' : true,
-        limit: 1
+        limit: 1,
+        onState: state => {
+            state.aborted && console.log(`${yellow}Exiting...${reset}`);
+        }
     });
 
-    if (!response.bump) {
-        console.error(`${red}Error: Invalid version bump type${reset}`);
-        console.log(`${yellow}Exiting...${reset}`);
-        process.exit(0);
-    }
-
-    const newVersion = semver.inc(currentVersion, response.bump);
+    const newVersion = incrementVersion(currentVersion, response.bump);
     const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
     packageJson.version = newVersion.toString();
 
@@ -70,14 +97,11 @@ async function deployToGitHub() {
             type: 'text',
             name: 'commit',
             message: 'Enter the commit message:',
-            validate: value => value.trim() === '' ? 'Commit message cannot be empty' : true
+            validate: value => value.trim() === '' ? 'Commit message cannot be empty' : true,
+            onState: state => {
+                state.aborted && console.log(`${yellow}Exiting...${reset}`);
+            }
         });
-
-        if (!response.commit) {
-            console.error(`${red}Invalid commit message${reset}`);
-            console.log(`${yellow}Exiting...${reset}`);
-            process.exit(0);
-        }
 
         exec(`git commit -m "${response.commit}"`, (error) => {
             if (error) {
@@ -107,7 +131,7 @@ async function main() {
     console.log(`${blue}Local version: ${localVersion}${reset}`);
     console.log(`${blue}NPM version: ${npmVersion}${reset}`);
 
-    if (semver.gt(localVersion, npmVersion)) {
+    if (isGreaterVersion(localVersion, npmVersion)) {
         console.log(`${yellow}✔  Passed. Ready to deploy.${reset}`);
         await deployToGitHub();
     } else {
