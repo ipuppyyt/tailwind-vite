@@ -12,4 +12,4 @@ node_modules/
 # Ignore files used for git configuration
 .gitattributes
 .github
-auto/
+src/

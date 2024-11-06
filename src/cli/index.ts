@@ -10,13 +10,13 @@ import { execSync } from 'child_process';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const handleExit = (error) => {
+const handleExit = (error: Error | null) => {
     error && console.error(`\n\x1b[31m❌ ${error.message}\x1b[0m`);
     console.log(`\n\x1b[33m🚪 Exiting. Goodbye! ✌️\x1b[0m`);
     process.exit(0);
 };
 
-async function main() {
+async function main(): Promise<void> {
     try {
         const response = await prompts([
             {
@@ -345,8 +345,12 @@ async function main() {
                     execSync(`git remote add origin https://github.com/${githubUsername.toLowerCase()}/${gitRepoNameResponse.repoName}.git`, { cwd: projectPath });
                     spinner2.succeed('Git repository initialized.');
                     console.log(`\x1b[32mOrigin: https://github.com/${githubUsername}/${gitRepoNameResponse.repoName}.git\x1b[0m`);
-                } catch (error) {
-                    spinner2.fail(`Failed to initialize Git repository: ${error.message}`);
+                } catch (error: unknown) {
+                    if (error instanceof Error) {
+                        spinner2.fail(`Failed to initialize Git repository: ${error.message}`);
+                    } else {
+                        spinner2.fail('Failed to initialize Git repository due to an unknown error.');
+                    }
                 }
             }
         }
@@ -356,7 +360,7 @@ async function main() {
         (projectName !== ".") && console.log(`\n  cd ${projectName}`);
         console.log(`  npm install`);
         console.log(`  npm run dev`);
-    } catch (error) {
+    } catch (error: Error | any) {
         handleExit(error);
     }
 }

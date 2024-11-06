@@ -1,6 +1,6 @@
-const { exec } = require('child_process');
-const prompts = require('prompts');
-const fs = require('fs');
+import { exec } from 'child_process';
+import prompts from 'prompts';
+import fs from 'fs';
 
 const red = '\x1b[31m';
 const green = '\x1b[32m';

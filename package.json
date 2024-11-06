@@ -1,10 +1,11 @@
 {
   "name": "create-tailwind-vite",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
-  "main": "cli/index.mjs",
+  "type": "module",
+  "main": "dist/cli/index.js",
   "bin": {
-    "tailwind-vite": "cli/index.mjs"
+    "tailwind-vite": "dist/cli/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -32,9 +33,7 @@
     "url": "https://github.com/ipuppyyt/tailwind-vite/issues"
   },
   "files": [
-    "cli/index.mjs",
-    "templates/",
-    "LICENSE",
+    "dist",
     "README.md",
     "package.json"
   ],
@@ -44,6 +43,12 @@
     "prompts": "^2.4.2"
   },
   "scripts": {
-    "deploy": "node auto/deploy.js"
+    "build": "tsc && node src/copyTemplates.js",
+    "deploy": "node src/deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^5.6.3"
   }
 }
