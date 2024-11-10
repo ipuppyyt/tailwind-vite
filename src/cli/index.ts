@@ -36,7 +36,7 @@ async function main(): Promise<void> {
                 message: '📚 Select a library or framework:',
                 choices: [
                     { title: '\x1b[33mVanilla\x1b[0m 🍦', value: 'vanilla' },
-                    // { title: '\x1b[36mVue\x1b[0m 🍃', value: 'vue' },
+                    { title: '\x1b[36mVue\x1b[0m 🍃', value: 'vue' },
                     { title: '\x1b[34mReact\x1b[0m 💙', value: 'react' },
                     // { title: '\x1b[32mPreact\x1b[0m 🌳', value: 'preact' },
                     // { title: '\x1b[35mLit\x1b[0m 🕯️', value: 'lit' },
@@ -79,9 +79,9 @@ async function main(): Promise<void> {
                 message: '📂 Select a framework and variant:',
                 choices: [
                     { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
-                    { title: '\x1b[33mCustomise with create-vue\x1b[0m 🎨', value: 'create-vue' },
-                    { title: '\x1b[33mNuxt.js\x1b[0m 📦', value: 'nuxt' }
+                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    // { title: '\x1b[33mCustomise with create-vue\x1b[0m 🎨', value: 'create-vue' },
+                    // { title: '\x1b[33mNuxt.js\x1b[0m 📦', value: 'nuxt' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
