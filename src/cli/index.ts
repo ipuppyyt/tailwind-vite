@@ -81,7 +81,7 @@ async function main(): Promise<void> {
                     { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
                     { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
                     // { title: '\x1b[33mCustomise with create-vue\x1b[0m 🎨', value: 'create-vue' },
-                    // { title: '\x1b[33mNuxt.js\x1b[0m 📦', value: 'nuxt' }
+                    { title: '\x1b[33mNuxt.js\x1b[0m 📦', value: 'nuxt' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,

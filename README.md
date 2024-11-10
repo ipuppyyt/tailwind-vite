@@ -37,7 +37,8 @@ TAILWIND-VITE/
 │   └── TS
 ├── VUE
 │   ├── JS
-│   └── TS
+│   ├── TS
+│   └── NUXT
 └── ... (coming soon)
 ```
 
