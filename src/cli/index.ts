@@ -79,7 +79,7 @@ async function main(): Promise<void> {
                 message: '📂 Select a framework and variant:',
                 choices: [
                     { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
                     // { title: '\x1b[33mCustomise with create-vue\x1b[0m 🎨', value: 'create-vue' },
                     // { title: '\x1b[33mNuxt.js\x1b[0m 📦', value: 'nuxt' }
                 ],
