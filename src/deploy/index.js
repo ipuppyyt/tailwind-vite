@@ -1,5 +1,6 @@
 import { exec } from 'child_process';
 import prompts from 'prompts';
+import ora from 'ora';
 import fs from 'fs';
 
 const red = '\x1b[31m';
@@ -135,7 +136,9 @@ async function deployToGitHub() {
 async function main() {
     const packageName = getPackageName();
     const localVersion = getLocalVersion();
+    const spinner = ora('Fetching version from npm').start();
     const npmVersion = await getNpmVersion(packageName);
+    spinner.stop();
 
     console.log(`${blue}Local version: ${localVersion}${reset}`);
     console.log(`${blue}NPM version: ${npmVersion}${reset}`);
