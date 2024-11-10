@@ -1,6 +1,6 @@
 {
   "name": "create-tailwind-vite",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A CLI to generate a Vite + Tailwind CSS project with options for JavaScript, TypeScript, SWC, CSS, and SCSS",
   "type": "module",
   "main": "dist/cli/index.js",

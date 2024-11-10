@@ -113,9 +113,9 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
-                    { title: '\x1b[33mCustomise with create-preact\x1b[0m 🎨', value: 'create-preact' }
+                    // { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    // { title: '\x1b[33mCustomise with create-preact\x1b[0m 🎨', value: 'create-preact' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
@@ -129,8 +129,8 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
+                    // { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
@@ -144,9 +144,9 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
-                    { title: '\x1b[33mSvelteKit\x1b[0m 🚀', value: 'sveltekit' }
+                    // { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    // { title: '\x1b[33mSvelteKit\x1b[0m 🚀', value: 'sveltekit' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
@@ -160,8 +160,8 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
+                    // { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
@@ -175,9 +175,9 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
-                    { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
-                    { title: '\x1b[33mQwikCity\x1b[0m 🏙️', value: 'qwikcity' }
+                    // { title: '\x1b[36mTypeScript\x1b[0m 📘', value: 'ts' },
+                    // { title: '\x1b[32mJavaScript\x1b[0m ✨', value: 'js' },
+                    // { title: '\x1b[33mQwikCity\x1b[0m 🏙️', value: 'qwikcity' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
@@ -191,8 +191,8 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[31mAngular\x1b[0m 🅰️', value: 'angular' },
-                    { title: '\x1b[36mAnalog\x1b[0m 📟', value: 'analog' }
+                    // { title: '\x1b[31mAngular\x1b[0m 🅰️', value: 'angular' },
+                    // { title: '\x1b[36mAnalog\x1b[0m 📟', value: 'analog' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
@@ -206,8 +206,8 @@ async function main(): Promise<void> {
                 name: 'variant',
                 message: '📂 Select a framework and variant:',
                 choices: [
-                    { title: '\x1b[33mcreate-vite-extra\x1b[0m 🎨', value: 'create-vite-extra' },
-                    { title: '\x1b[34mcreate-electron-vite\x1b[0m 🎨', value: 'create-electron-vite' }
+                    // { title: '\x1b[33mcreate-vite-extra\x1b[0m 🎨', value: 'create-vite-extra' },
+                    // { title: '\x1b[34mcreate-electron-vite\x1b[0m 🎨', value: 'create-electron-vite' }
                 ],
                 initial: 0,
                 validate: (value) => value.trim() === '' ? 'Variant is required.' : true,
