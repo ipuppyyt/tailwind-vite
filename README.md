@@ -35,6 +35,9 @@ TAILWIND-VITE/
 ├── VANILLA
 │   ├── JS
 │   └── TS
+├── VUE
+│   ├── JS
+│   └── TS
 └── ... (coming soon)
 ```
 
